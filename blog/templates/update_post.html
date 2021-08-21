@@ -6,6 +6,7 @@ Update Post | {{post.title}}
 
 {% block content %}
 <h1>Update Post</h1>
+{% if user.is_authenticated %}
 <div class="form-group">
     <form method="POST">
         {% csrf_token %}
@@ -13,4 +14,5 @@ Update Post | {{post.title}}
         <button class="btn btn-secondary">Update</button>
     </form>
 </div>
+{% endif %}
 {% endblock %}

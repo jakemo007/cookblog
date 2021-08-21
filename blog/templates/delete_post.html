@@ -9,6 +9,7 @@ Delete Post | {{post.title}}
 <br>
 <br>
 <h2>Delete Post : {{post.title}} </h2>
+{% if user.is_authenitcated %}
 <div class="form-group">
     <form method="POST">
         {% csrf_token %}
@@ -16,4 +17,9 @@ Delete Post | {{post.title}}
         <button class="btn btn-secondary">Delete Post</button>
     </form>
 </div>
+{% else %}
+<div>
+    <p>You need to be signed in or registered for this.</p>
+</div>
+{% endif %}
 {% endblock %}

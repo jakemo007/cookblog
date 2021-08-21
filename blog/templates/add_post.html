@@ -6,6 +6,7 @@ Create New Post
 
 {% block content %}
 <h1>Add Post</h1>
+{% if user.is_authenticated %}
 <div class="form-group">
     <form method="POST">
         {% csrf_token %}
@@ -13,4 +14,9 @@ Create New Post
         <button class="btn btn-secondary">Post</button>
     </form>
 </div>
+{%else%}
+<div>
+    <p>Please Login or Register to add a post.</p>
+</div>
+{% endif %}
 {% endblock %}
