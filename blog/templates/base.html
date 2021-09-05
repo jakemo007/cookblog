@@ -22,19 +22,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            {% if user.is_authenticated == False %}
+            {% if user.is_authenticated == True %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'new_post' %}">Create New Post</a>
               </li>
+              {% if user.is_staff == True %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                <a class="nav-link" href="{% url 'add_catagory' %}">Add Catagory</a>
               </li>
+              {% endif %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
               </li>
             {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
               </li>
             {% endif %}
 

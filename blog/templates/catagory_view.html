@@ -1,11 +1,11 @@
 {% extends 'base.html'%}
 {% block content %}
-<h1>Post</h1>
+<h1>Posts under catagory <b>{{cats}}</b></h1>
 <ul>
-    {% for post in object_list%}
+    {% if catagory %}
+    {% for post in catagory %}
     <li>
-        <a href="{% url 'article_details' post.pk %}">{{post.title}}</a>|
-        <a href="{% url 'catagory_view' post.category %}">{{post.category}}</a> 
+        <a href="{% url 'article_details' post.pk %}">{{post.title}}</a> 
         -{{post.author.first_name}} {{post.author.last_name}} 
         {% if user.is_authenticated %}
         <small>
@@ -18,5 +18,11 @@
         {{post.body|slice:":150"|safe}}
     </li>
     {% endfor %}
+
+    {% else %}
+    <li>
+        Invalid catagory or catagory does not exists.
+    </li>
+    {% endif %}
 </ul>
 {% endblock%}
