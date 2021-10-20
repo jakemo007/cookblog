@@ -8,7 +8,7 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title' : forms.TextInput(attrs={'class' : 'form-control'}),
             'title_tag' : forms.TextInput(attrs={'class': 'form-control','placeholder':'cooking'}),
-            'author': forms.Select(attrs={'class' : 'form-control'}),
+            'author': forms.TextInput(attrs={'class' : 'form-control','type':'hidden','value':'', 'id':'username'}),
             'category':forms.Select(choices= [item for item in Category.objects.all().values_list('name','name')],attrs={'class' : 'form-control'}),
             'body'  : forms.Textarea(attrs={'class' : 'form-control'}),
         }

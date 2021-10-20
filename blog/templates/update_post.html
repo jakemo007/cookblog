@@ -1,18 +1,22 @@
 {% extends 'base.html'%}
-
 {% block title %}
 Update Post | {{post.title}}
 {% endblock %}
-
 {% block content %}
 <h1>Update Post</h1>
 {% if user.is_authenticated %}
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-secondary">Update</button>
-    </form>
-</div>
+    {% if user.id == post.author.id}
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-secondary">Update</button>
+            </form>
+        </div>
+    {% else %}
+    You are not the currect user.
+    {% endif %}
+{% else %}
+You Are Not Signed In. Please login or register to continue.
 {% endif %}
 {% endblock %}

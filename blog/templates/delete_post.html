@@ -10,13 +10,19 @@ Delete Post | {{post.title}}
 <br>
 <h2>Delete Post : {{post.title}} </h2>
 {% if user.is_authenitcated %}
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        <b>Are you sure you Want to Delete</b><br>
-        <button class="btn btn-secondary">Delete Post</button>
-    </form>
-</div>
+    {% if user.id == post.author.id %}
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            <b>Are you sure you Want to Delete</b><br>
+            <button class="btn btn-secondary">Delete Post</button>
+        </form>
+    </div>
+    {% else %}
+    <div>
+        <p>You are not the owner of the post.</p>
+    </div>
+    {% endif %}
 {% else %}
 <div>
     <p>You need to be signed in or registered for this.</p>
